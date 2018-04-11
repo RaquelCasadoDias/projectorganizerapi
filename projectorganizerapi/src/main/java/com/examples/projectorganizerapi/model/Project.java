@@ -21,9 +21,8 @@ public class Project {
 	
 	@Id
 	@Column(unique=true)
-//	@NotBlank(message="Field projectId can't be blank")
 	@NotNull(message="Field projectId can't be blank")
-	private long projectId;
+	private String projectId;
 	@Column
 	@NotBlank(message="Field projectName can't be blank")
 	private String projectName;
@@ -46,10 +45,10 @@ public class Project {
 
 	private List<Collaborator> collaborators;
 	
-	public long getProjectId() {
+	public String getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(long projectId) {
+	public void setProjectId(String projectId) {
 		this.projectId = projectId;
 	}
 	public String getProjectName() {
@@ -85,7 +84,7 @@ public class Project {
 		this.collaborators = collaborators;
 	}
 	
-	public Project(long projectId, String projectName, String startDate, String finishDate,
+	public Project(String projectId, String projectName, String startDate, String finishDate,
 			long client_id) {
 		super();
 		this.projectId = projectId;

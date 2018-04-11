@@ -38,7 +38,7 @@ public class ProjectService {
 		return projects;
 	}
 	
-	public ProjectDTO getProjectById(Long projectId) {
+	public ProjectDTO getProjectById(String projectId) {
 		Project project = projectDAO.findOne(projectId);
 		ProjectDTO projectDTO = mapper.map(project, ProjectDTO.class);
 		if(projectDTO == null) {
@@ -47,7 +47,7 @@ public class ProjectService {
 		return projectDTO;
 	}
 	
-	public Project getProjectByIdWithCollaborators(Long projectId) {
+	public Project getProjectByIdWithCollaborators(String projectId) {
 		Project project = projectDAO.findOne(projectId);
 		if(project == null) {
 			return null;
@@ -55,7 +55,7 @@ public class ProjectService {
 		return project;
 	}
 	
-	public Project updateProject(Long projectId, Project updatedProject) {
+	public Project updateProject(String projectId, Project updatedProject) {
 		Project project = projectDAO.findOne(projectId);
 		if(project == null) {
 			return null;
@@ -71,7 +71,7 @@ public class ProjectService {
 		
 	}
 	
-	public Project deleteProject(Long projectId) {
+	public Project deleteProject(String projectId) {
 		Project project = projectDAO.findOne(projectId);
 		if(project == null) {
 			return null;
@@ -80,7 +80,7 @@ public class ProjectService {
 		return project;
 	}
 	
-	public Project addCollaborator(Long projectId, Long collaboratorId) {
+	public Project addCollaborator(String projectId, Long collaboratorId) {
 		Project project = projectDAO.findOne(projectId);
 		Collaborator collaborator = collaboratorDAO.findOne(collaboratorId);
 		if(collaborator == null) {
@@ -91,7 +91,7 @@ public class ProjectService {
 		return project;
 	}
 	
-	public Project removeCollaborator(Long projectId, Long collaboratorId) {
+	public Project removeCollaborator(String projectId, Long collaboratorId) {
 		Project project = projectDAO.findOne(projectId);
 		Collaborator collaborator = collaboratorDAO.findOne(collaboratorId);
 		List<Collaborator> projectCollaborators = project.getCollaborators();

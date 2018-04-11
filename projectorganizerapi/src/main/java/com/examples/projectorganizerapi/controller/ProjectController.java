@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -23,6 +24,7 @@ import com.examples.projectorganizerapi.service.ProjectService;
 
 @RestController
 @RequestMapping
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProjectController {
 	
 	@Autowired
@@ -42,7 +44,7 @@ public class ProjectController {
 
 	
 	@GetMapping("/projects/{projectId}")
-	public ResponseEntity<ProjectDTO> getprojectById(@PathVariable(value="projectId")Long projectId){
+	public ResponseEntity<ProjectDTO> getprojectById(@PathVariable(value="projectId")String projectId){
 		ProjectDTO projectDTO = projectService.getProjectById(projectId);
 		if(projectDTO == null) {
 			return ResponseEntity.notFound().build();
@@ -51,7 +53,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/projectswithdetails/{projectId}")
-	public ResponseEntity<Project> getprojectByIdWithCollaborators(@PathVariable(value="projectId")Long projectId){
+	public ResponseEntity<Project> getprojectByIdWithCollaborators(@PathVariable(value="projectId")String projectId){
 		Project project = projectService.getProjectByIdWithCollaborators(projectId);
 		if(project == null) {
 			return ResponseEntity.notFound().build();
@@ -61,7 +63,7 @@ public class ProjectController {
 	
 	@PutMapping("/projects/{projectId}")
 	public ResponseEntity<Project> updateProject(@PathVariable(value="projectId")
-	Long projectId, @Valid @RequestBody Project updatedProject){
+	String projectId, @Valid @RequestBody Project updatedProject){
 		Project project = projectService.updateProject(projectId, updatedProject);
 		if(project == null) {
 			return ResponseEntity.notFound().build();
@@ -71,7 +73,7 @@ public class ProjectController {
 	
 	@DeleteMapping("/projects/{projectId}")
 	public ResponseEntity<Project> deleteProject(@PathVariable(value="projectId") 
-	Long projectId) {
+	String projectId) {
 		Project project = projectService.deleteProject(projectId);
 		if(project == null) {
 			return ResponseEntity.notFound().build();
@@ -81,7 +83,7 @@ public class ProjectController {
 	
 	
 	@PatchMapping("/projects/{projectId}/collaborators/+{collaboratorId}")
-	public ResponseEntity<Project> addCollaborator(@PathVariable(value="projectId") Long projectId, @PathVariable(value="collaboratorId") Long collaboratorId) {
+	public ResponseEntity<Project> addCollaborator(@PathVariable(value="projectId") String projectId, @PathVariable(value="collaboratorId") Long collaboratorId) {
 		Project project = projectService.addCollaborator(projectId, collaboratorId);
 		if(project == null) {
 			return ResponseEntity.badRequest().build();
@@ -90,7 +92,7 @@ public class ProjectController {
 	}
 	
 	@PatchMapping("/projects/{projectId}/collaborators/-{collaboratorId}")
-	public ResponseEntity<Project> removeCollaborator(@PathVariable(value="projectId") Long projectId, @PathVariable(value="collaboratorId") Long collaboratorId){
+	public ResponseEntity<Project> removeCollaborator(@PathVariable(value="projectId") String projectId, @PathVariable(value="collaboratorId") Long collaboratorId){
 		Project project = projectService.removeCollaborator(projectId, collaboratorId);
 		if(project == null) {
 			return ResponseEntity.notFound().build();

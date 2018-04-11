@@ -8,7 +8,7 @@ public class ProjectDTO {
 	
 //	@NotBlank(message="Field projectId can't be blank")
 	@NotNull(message="Field projectId can't be blank")
-	private long projectId;
+	private String projectId;
 	@NotBlank(message="Field projectName can't be blank")
 	private String projectName;
 	@NotBlank(message="Field projectStartDate can't be blank")
@@ -18,10 +18,10 @@ public class ProjectDTO {
 //	@NotBlank(message="Field client_id can't be blank")
 	@NotNull(message="Field clientId can't be blank")
 	private long client_id;
-	public long getProjectId() {
+	public String getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(long projectId) {
+	public void setProjectId(String projectId) {
 		this.projectId = projectId;
 	}
 	public String getProjectName() {

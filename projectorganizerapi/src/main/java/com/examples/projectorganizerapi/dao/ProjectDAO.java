@@ -31,7 +31,7 @@ public class ProjectDAO{
 		return projectRepository.findByCollaborators_CollaboratorId(collaboratorId);
 	}
 	
-	public Project findOne(Long projectId) {
+	public Project findOne(String projectId) {
 		return projectRepository.findOne(projectId);
 	}
 	
@@ -39,7 +39,7 @@ public class ProjectDAO{
 		projectRepository.delete(project);
 	}
 	
-	public void addCollaborator(Long projectId, Long collaboratorId) {
+	public void addCollaborator(String projectId, Long collaboratorId) {
 		Project project = projectRepository.findOne(projectId);
 		Collaborator collaborator = collaboratorRepository.findOne(collaboratorId);
 		project.addCollaborator(collaborator);
@@ -47,7 +47,7 @@ public class ProjectDAO{
 		
 	}
 	
-	public void removeCollaborator(Long projectId, Long collaboratorId) {
+	public void removeCollaborator(String projectId, Long collaboratorId) {
 		Project project = projectRepository.findOne(projectId);
 		Collaborator collaborator = collaboratorRepository.findOne(collaboratorId);
 		project.deleteCollaborator(collaborator);
